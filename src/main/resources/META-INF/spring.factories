@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.fred.boot.tools.redis.lock.LockAutoConfiguration,\
+  com.fred.boot.tools.log.AroundLogAutoConfiguration
