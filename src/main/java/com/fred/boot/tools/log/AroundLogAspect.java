@@ -12,6 +12,7 @@ import org.springframework.core.annotation.Order;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * @author Fred
@@ -44,8 +45,12 @@ public class AroundLogAspect {
             if (args != null) {
                 for (int i = 0; i < args.length; i++) {
                     String paramName = parameters[i].getName();
-
-                    String argStr = mapper.writeValueAsString(args[i]);
+                    String argStr= null;
+                    try {
+                        argStr  = mapper.writeValueAsString(args[i]);
+                    } catch (Exception e) {
+                        argStr = "无法解析";
+                    }
                     sb.append(paramName).append(":").append(argStr).append("\n");
                 }
             }
