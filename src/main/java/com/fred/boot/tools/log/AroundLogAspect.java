@@ -7,12 +7,9 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
-import org.springframework.core.annotation.Order;
-
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
 import java.time.LocalDateTime;
-import java.util.List;
 
 /**
  * @author Fred
@@ -37,7 +34,7 @@ public class AroundLogAspect {
             ObjectMapper mapper = new ObjectMapper();
 
             String methodName = method.getName();
-            sb.append("methodName:").append(methodName).append("\n");
+            sb.append("method name:> ").append(methodName).append("\n");
 
             Parameter[] parameters = method.getParameters();
             Object[] args = point.getArgs();
@@ -71,7 +68,7 @@ public class AroundLogAspect {
             throw new RuntimeException("系统异常!");
         }finally {
             started.stop();
-            sb.append("call total time(ms) :>").append(started.getTime()).append("\n");
+            sb.append("call total time(ms) :> ").append(started.getTime()).append("\n");
             sb.append("<====================================END====================================>\n");
             log.info(sb.toString());
         }
